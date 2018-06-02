@@ -2,11 +2,11 @@ from setuptools import setup, find_packages
 
 
 setup(
-    name='trillion_clients',
+    name='trillion_client',
     version='20180602.0',
-    description='trillion-clients',
+    description='trillion_client',
     keywords='trillion clients',
-    url='https://github.com/joosthoeks/trillion-clients',
+    url='https://github.com/joosthoeks/trillion-client',
     author='Joost Hoeks',
     author_email='joosthoeks@gmail.com',
     license='GNU',
