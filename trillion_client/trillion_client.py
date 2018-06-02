@@ -8,23 +8,21 @@ class TrillionClient(object):
     def __init__(self, url='https://trillion-eindhoven.xlab.si/api/'):
         self.__url = url
 
-    def set_credential(self, pub_key, sec_key):
-        self.__pub_key = pub_key
-        self.__sec_key = sec_key
+    def set_credential(self, bearer_token):
+        self.__bearer_token = bearer_token
 
-    def __get_credential(self, endpoint, params):
-        '''
-        TODO
-        '''
+    def __get_credential(self):
+        headers = {
+                'Authorization Bearer ': self.__bearer_token
+                }
+        return headers
 
     def __request(self, endpoint, params, method='GET', credential=False):
         full_url = '%s%s' % (self.__url, endpoint)
         if credential:
-            '''
-            TODO
-            '''
+            headers = self.__get_credential()
             if method is 'GET':
-                r = requests.get(full_url, params=params)
+                r = requests.get(full_url, params=params, headers=headers)
             if method is 'POST':
                 r = requests.post(full_url, data=params)
             if method is 'PUT':
@@ -38,12 +36,12 @@ class TrillionClient(object):
     def analytics_data_analytics_list(self, **kwargs):
         params = {}
         params.update(kwargs)
-        return self.__request('analytics/data_analytics/', params, 'GET', True)
+        return self.__request('analytics/data_analytics/', params)
 
     def analytics_data_analytics_read(self, id, **kwargs):
         params = {}
         params.update(kwargs)
-        return self.__request('analytics/data_analytics/%s/' % id, params, 'GET', True)
+        return self.__request('analytics/data_analytics/%s/' % id, params)
 
     def auth_convert_token_create(self):
         return self.__request('auth/convert-token/', {}, 'POST', True)

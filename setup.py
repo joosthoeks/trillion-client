@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 
 setup(
-    name='trillion-clients',
+    name='trillion_clients',
     version='20180602.0',
     description='trillion-clients',
     keywords='trillion clients',
